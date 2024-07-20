@@ -38,13 +38,27 @@ public class StoreServiceTests {
         }
 
         @ParameterizedTest
-        @EnumSource(names = {"Not", "Or", "And"})
-        void shouldSuccessfullyHandleSimpleLogicalOperators(OperatorType operatorType) {
+        @EnumSource(names = {"Or", "And"})
+        void shouldSuccessfullyHandleSimpleLogicalOperatorWithTwoNestedParameters(OperatorType operatorType) {
             var operator = operatorFactory.createLogicalOperator(
                     operatorType,
                     List.of(
                             operatorFactory.createComparatorOperator(OperatorType.Equal, "id", "my-story"),
                             operatorFactory.createComparatorOperator(OperatorType.LessThan, "views", 100)
+                    )
+            );
+            var result = service.findAll(new QuerySpecification<Store>(operator));
+
+            Assertions.assertNotNull(result);
+        }
+
+        @ParameterizedTest
+        @EnumSource(names = {"Not"})
+        void shouldSuccessfullyHandleSimpleLogicalOperatorWithOneNestedParameter(OperatorType operatorType) {
+            var operator = operatorFactory.createLogicalOperator(
+                    operatorType,
+                    List.of(
+                            operatorFactory.createComparatorOperator(OperatorType.Equal, "id", "my-story")
                     )
             );
             var result = service.findAll(new QuerySpecification<Store>(operator));
