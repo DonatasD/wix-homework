@@ -1,8 +1,8 @@
-package com.donatasd.wixhomework.query;
+package com.donatasd.wixhomework.query.operator;
 
 import java.util.Arrays;
 
-public enum OperatorEnum {
+public enum OperatorType {
     Equal("EQUAL"),
     LessThan("LESS_THAN"),
     GreaterThan("GREATER_THAN"),
@@ -12,7 +12,7 @@ public enum OperatorEnum {
 
     public final String value;
 
-    OperatorEnum(String value) {
+    OperatorType(String value) {
         this.value = value;
     }
 
@@ -20,8 +20,8 @@ public enum OperatorEnum {
         return value;
     }
 
-    public static OperatorEnum valueOfString(String value) {
-        return Arrays.stream(OperatorEnum.values())
+    public static OperatorType valueOfString(String value) {
+        return Arrays.stream(OperatorType.values())
                 .filter((operatorEnum) -> operatorEnum.getValue().equals(value))
                 .findFirst()
                 .orElseThrow();

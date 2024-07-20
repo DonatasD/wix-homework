@@ -1,4 +1,4 @@
-package com.donatasd.wixhomework.query;
+package com.donatasd.wixhomework.query.operator;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class OperatorEnumTests {
+public class OperatorTypeTests {
 
     @Nested
     @DisplayName("valueOfString")
@@ -16,13 +16,13 @@ public class OperatorEnumTests {
         @ParameterizedTest
         @ValueSource(strings = {"EQUAL", "LESS_THAN", "GREATER_THAN", "AND", "OR", "NOT"})
         void shouldCorrectlyReturnOperatorEnum(String value) {
-            assertEquals(value, OperatorEnum.valueOfString(value).getValue());
+            assertEquals(value, OperatorType.valueOfString(value).getValue());
         }
 
         @ParameterizedTest
         @ValueSource(strings = "INVALID")
         void shouldThrowWhenProvidingUnknownValue(String value) {
-            assertThrows(IllegalArgumentException.class, () -> OperatorEnum.valueOf(value));
+            assertThrows(IllegalArgumentException.class, () -> OperatorType.valueOf(value));
         }
     }
 }

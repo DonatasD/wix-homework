@@ -1,9 +1,9 @@
-package com.donatasd.wixhomework.query;
+package com.donatasd.wixhomework.query.operator;
 
 import java.util.List;
 
 public interface IOperator {
-    public OperatorEnum getOperatorEnum();
+    public OperatorType getOperatorEnum();
 
     public String getProperty();
 

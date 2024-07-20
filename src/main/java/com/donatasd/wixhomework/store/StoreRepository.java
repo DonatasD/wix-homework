@@ -1,16 +1,9 @@
 package com.donatasd.wixhomework.store;
 
-import jakarta.persistence.EntityManager;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public class StoreRepository {
-
-    private EntityManager em;
-
-    public List<Store> findAllByQuery(Object query) {
-        throw new UnsupportedOperationException();
-    }
+public interface StoreRepository extends JpaRepository<Store, String>, JpaSpecificationExecutor<Store> {
 }

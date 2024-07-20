@@ -1,11 +1,16 @@
 package com.donatasd.wixhomework.store;
 
+import com.donatasd.wixhomework.query.jpa.QuerySpecification;
+import com.donatasd.wixhomework.query.operator.IOperator;
+import com.donatasd.wixhomework.query.operator.Operator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("/store")
+@RestController
+@RequestMapping("/store")
 public class StoreController {
 
     private final StoreService storeService;
@@ -15,11 +20,15 @@ public class StoreController {
         this.storeService = storeService;
     }
 
-    public List<Store> findAllByQuery(Object query) {
-        return this.storeService.findAllByQuery(query);
+    @GetMapping()
+    public List<Store> findAllByQuery(@RequestParam(name = "query", required = false) IOperator operator) {
+        Specification<Store> specification = new QuerySpecification<>(operator);
+        return this.storeService.findAll(specification);
     }
 
-    public Store createOrUpdate(Object store) {
+    // TODO might be worth having a separate object like StoreSaveDTO to avoid using Entity object and having clear save payload definition
+    @PostMapping()
+    public Store createOrUpdate(@RequestBody Store store) {
         return this.storeService.createOrUpdate(store);
     }
 }
