@@ -2,7 +2,6 @@ package com.donatasd.wixhomework.store;
 
 import com.donatasd.wixhomework.query.jpa.QuerySpecification;
 import com.donatasd.wixhomework.query.operator.IOperator;
-import com.donatasd.wixhomework.query.operator.Operator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.*;

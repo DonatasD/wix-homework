@@ -2,7 +2,6 @@ package com.donatasd.wixhomework.store;
 
 import com.donatasd.wixhomework.query.jpa.QuerySpecification;
 import com.donatasd.wixhomework.query.operator.IOperatorFactory;
-import com.donatasd.wixhomework.query.operator.Operator;
 import com.donatasd.wixhomework.query.operator.OperatorFactory;
 import com.donatasd.wixhomework.query.operator.OperatorType;
 import org.junit.jupiter.api.Assertions;

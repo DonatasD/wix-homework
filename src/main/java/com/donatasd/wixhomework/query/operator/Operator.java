@@ -34,7 +34,7 @@ public class Operator implements IOperator {
     /**
      * Constructor to generate simple operator without nested operators
      *
-     * @param type - {@link OperatorType} indicating operation type
+     * @param type     - {@link OperatorType} indicating operation type
      * @param property - Operator property on which operation will be applied, i.e. "id"
      * @param value    - Operator value on which operation will be evaluated, i.e. "my-store", 100
      */

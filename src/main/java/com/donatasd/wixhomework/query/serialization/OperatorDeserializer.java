@@ -1,6 +1,9 @@
 package com.donatasd.wixhomework.query.serialization;
 
-import com.donatasd.wixhomework.query.operator.*;
+import com.donatasd.wixhomework.query.operator.IOperator;
+import com.donatasd.wixhomework.query.operator.IOperatorFactory;
+import com.donatasd.wixhomework.query.operator.OperatorFactory;
+import com.donatasd.wixhomework.query.operator.OperatorType;
 import org.springframework.lang.NonNull;
 
 import java.util.List;
@@ -8,6 +11,7 @@ import java.util.List;
 public class OperatorDeserializer implements IOperatorDeserializer {
 
     private final IOperatorFactory operatorFactory = new OperatorFactory();
+
     @Override
     public IOperator deserialize(String query) {
         // Find operator information start and end points based on "(" and ")"
@@ -30,7 +34,7 @@ public class OperatorDeserializer implements IOperatorDeserializer {
     }
 
     private List<IOperator> deserializeNestedOperators(@NonNull String query) {
-        if(query.contains("),")) {
+        if (query.contains("),")) {
             var openingAndClosingBracesPositions = findFirstOpeningAndRelatedClosingBracesPositions(query);
             var openingBracesPosition = openingAndClosingBracesPositions.get(0);
             var closingBracesPosition = openingAndClosingBracesPositions.get(1);
@@ -55,6 +59,7 @@ public class OperatorDeserializer implements IOperatorDeserializer {
 
     /**
      * Converts provided value to Specific type. Currently, supports only transformation to String and Integer
+     *
      * @param value
      * @return
      */
@@ -69,6 +74,7 @@ public class OperatorDeserializer implements IOperatorDeserializer {
      * Finds first opening braces and their related closing braces. Provides a list where index 0 contains opening
      * brace position and index 1 contains related closing brace position. If braces are not found this is indicated by
      * value -1.
+     *
      * @param string - {@link String} to search on
      * @return List of opening and closing brace positions. Index 0 - starting position, Index 1 - ending position
      */
@@ -79,7 +85,7 @@ public class OperatorDeserializer implements IOperatorDeserializer {
         int currentOpeningBracesCount = 1;
         var remainingString = string.subSequence(openingBracesPosition + 1, string.length()).toString();
 
-        for(int i = 0; i < remainingString.length(); i++){
+        for (int i = 0; i < remainingString.length(); i++) {
             char currentCharacter = remainingString.charAt(i);
             if (currentCharacter == '(') {
                 currentOpeningBracesCount++;
