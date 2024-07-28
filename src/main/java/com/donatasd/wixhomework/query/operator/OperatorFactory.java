@@ -1,7 +1,10 @@
 package com.donatasd.wixhomework.query.operator;
 
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 
+@Component
 public class OperatorFactory implements IOperatorFactory {
     @Override
     public IOperator createLogicalOperator(OperatorType type, List<IOperator> nestedOperators) {

@@ -2,15 +2,22 @@ package com.donatasd.wixhomework.query.serialization;
 
 import com.donatasd.wixhomework.query.operator.IOperator;
 import com.donatasd.wixhomework.query.operator.IOperatorFactory;
-import com.donatasd.wixhomework.query.operator.OperatorFactory;
 import com.donatasd.wixhomework.query.operator.OperatorType;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class OperatorDeserializer implements IOperatorDeserializer {
 
-    private final IOperatorFactory operatorFactory = new OperatorFactory();
+    private final IOperatorFactory operatorFactory;
+
+    @Autowired
+    public OperatorDeserializer(IOperatorFactory operatorFactory) {
+        this.operatorFactory = operatorFactory;
+    }
 
     @Override
     public IOperator deserialize(String query) {

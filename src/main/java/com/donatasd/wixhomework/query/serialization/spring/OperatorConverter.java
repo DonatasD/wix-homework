@@ -9,7 +9,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class OperatorConverter implements Converter<String, IOperator> {
 
-    private final OperatorDeserializer operatorDeserializer = new OperatorDeserializer();
+    private final OperatorDeserializer operatorDeserializer;
+
+    public OperatorConverter(OperatorDeserializer operatorDeserializer) {
+        this.operatorDeserializer = operatorDeserializer;
+    }
 
     @Override
     @NonNull

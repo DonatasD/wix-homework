@@ -40,7 +40,7 @@ public class StoreControllerTests {
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-        var serializedStore =  mapper.writeValueAsBytes(store);
+        var serializedStore = mapper.writeValueAsBytes(store);
 
         mvc.perform(post("/store").contentType(MediaType.APPLICATION_JSON).content(serializedStore))
                 .andExpect(status().isOk());
@@ -72,12 +72,13 @@ public class StoreControllerTests {
         var store = generateTestStore();
         storeRepository.save(store);
 
-        MvcResult result = mvc.perform(get("/store?query=EQUAL(id,\""+ store.getId()+ "\")").contentType(MediaType.APPLICATION_JSON))
+        MvcResult result = mvc.perform(get("/store?query=EQUAL(id,\"" + store.getId() + "\")").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
 
         ObjectMapper mapper = new ObjectMapper();
-        var stores =  mapper.readValue(result.getResponse().getContentAsByteArray(), new TypeReference<List<Store>>(){});
+        var stores = mapper.readValue(result.getResponse().getContentAsByteArray(), new TypeReference<List<Store>>() {
+        });
 
         assertEquals(1, stores.size());
         assertEquals(store.getId(), stores.get(0).getId());

@@ -3,11 +3,11 @@ package com.donatasd.wixhomework.query.operator;
 import java.util.List;
 
 public interface IOperator {
-    public OperatorType getOperatorEnum();
+    OperatorType getOperatorEnum();
 
-    public String getProperty();
+    String getProperty();
 
-    public Object getValue();
+    Object getValue();
 
-    public List<IOperator> getNestedOperators();
+    List<IOperator> getNestedOperators();
 }
